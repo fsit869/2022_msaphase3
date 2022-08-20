@@ -8,27 +8,25 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "note")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Note {
+@Table(name = "university")
+public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Integer id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "university_name", nullable = false)
+    private String universityName;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "university_rating", nullable = false)
+    private int universityRank;
 
-    @Column(name = "date")
-    private String date;
+    @Column(name = "location", nullable = false)
+    private String location;
 
-    @Column(name = "serverity")
-    private Integer serverity;
 
 }
