@@ -10,8 +10,8 @@ export default {
 const Template = (args) => <SideBar {...args}/>
 
 // @ts-ignore
-export const normal = Template.bind({});
+export const invalidVideo = Template.bind({});
 // @ts-ignore
-normal.args = {
+invalidVideo.args = {
 };
 

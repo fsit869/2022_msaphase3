@@ -4,6 +4,7 @@ import {VideoComponent} from "../components/VideoComponent";
 import {Box, Button, Grid} from "@mui/material";
 import getVideoInformation from "../api/YoutubeDislikeApi";
 import {NewTask} from "../components/NewTask";
+import BouncingBall from "../components/BouncingBall";
 
 /**
  * This contains all the content of the main page.
@@ -43,6 +44,10 @@ function MainPage() {
                         {videoList[key]}
                     </Grid>
                 })}
+
+                <Grid item>
+                    <BouncingBall></BouncingBall>
+                </Grid>
 
             </Grid>
             {/* New task FAB */}
