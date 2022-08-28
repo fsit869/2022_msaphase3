@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import Header from "../components/Header";
 import {VideoComponent} from "../components/VideoComponent";
-import {Box, Button, Grid} from "@mui/material";
+import {Box, Button, Grid, Stack} from "@mui/material";
 import getVideoInformation from "../api/YoutubeDislikeApi";
-import {NewTask} from "../components/NewTask";
+import {NewVideo} from "../components/NewVideo";
 import BouncingBall from "../components/BouncingBall";
+import {TaskComponent} from "../components/notes/TaskComponent";
+import {NewNote} from "../components/notes/NewNote";
 
 /**
  * This contains all the content of the main page.
@@ -49,9 +51,17 @@ function MainPage() {
                     <BouncingBall></BouncingBall>
                 </Grid>
 
+                <Grid item>
+                    <TaskComponent severity={1} date={"10/20"} description={"Hello"} id={"re"} title={"ttie"}/>
+                </Grid>
+
+                <NewVideo onNewNote={addNewComponentToList}></NewVideo>
             </Grid>
             {/* New task FAB */}
-            <NewTask onNewNote={addNewComponentToList}></NewTask>
+
+
+            <NewNote></NewNote>
+
 
         </div>
     );
