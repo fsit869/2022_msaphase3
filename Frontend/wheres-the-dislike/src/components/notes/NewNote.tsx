@@ -1,6 +1,5 @@
 
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
-
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import {
     Box, Button,
     createStyles,
@@ -13,6 +12,7 @@ import {
     Theme
 } from "@mui/material";
 import React from "react";
+import {saveNewNote} from "../../api/NoteApi";
 
 
 
@@ -55,6 +55,14 @@ export const NewNote: React.FC<Props> = (props: Props) => {
 
     // Handle finish creating new note
     const createNote = () => {
+        if (commentError || title.length===0) {
+            // Reject creating new note if error
+        } else {
+            // Send mutation for new note
+            saveNewNote(title, comments, new Date().toISOString().slice(0, 10), severity)
+            handleClose();
+        }
+
     };
 
     // Handles limit on comment and error status
@@ -90,7 +98,7 @@ export const NewNote: React.FC<Props> = (props: Props) => {
                 }}
                 onClick={handleClickOpen}
             >
-                <NoteAddIcon/>
+                <EventNoteIcon/>
             </Fab>
 
             {/* DIALOGUE MENU */}

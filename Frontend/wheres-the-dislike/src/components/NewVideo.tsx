@@ -9,7 +9,7 @@ import {
     Fab,
     TextField
 } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import {useState} from "react";
 
 interface Props {
@@ -54,13 +54,13 @@ export const NewVideo = (props: Props) => {
                     margin: 0,
                     top: "auto",
                     right: 30,
-                    bottom: 30,
+                    bottom: 90,
                     left: "auto",
                     position: "fixed",
                 }}
                 onClick={handleClickOpen}
             >
-                <AddIcon/>
+                <YouTubeIcon/>
             </Fab>
 
             {/* DIALOGUE MENU */}

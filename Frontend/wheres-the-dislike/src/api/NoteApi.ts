@@ -8,7 +8,7 @@ export type NoteKeys = {
     severity: number;
 };
 
-const ENDPOINT = "https://msa-notes-backend.herokuapp.com/"
+const ENDPOINT = "https://msa-notes-backend.herokuapp.com"
 
 export function getAllNotes(
     setData: React.Dispatch<any>,
@@ -50,12 +50,16 @@ export function getCertainNote(
 }
 
 export function saveNewNote(
-    noteID: string,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-    setError: React.Dispatch<React.SetStateAction<boolean>>
+    title: string,
+    description: string,
+    date: string,
+    severity: number,
 ) {
     axios.post(ENDPOINT + "/notes", {
-          title: "hello"
+        title: title,
+        date: date,
+        description: description,
+        severity: severity
     }).then((res)=> {
 
     }).catch((error) => {
