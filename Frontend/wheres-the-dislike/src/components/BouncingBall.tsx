@@ -33,10 +33,10 @@ const bounceTransition = {
 export default function BouncingBall() {
     return (
         <Card sx={{
-            maxWidth: 340,
-            maxHeight: 350,
-            minWidth: 340,
-            minHeight: 350,
+            maxWidth: 300,
+            maxHeight: 300,
+            minWidth: 300,
+            minHeight: 300,
         }}>
 
             <CardHeader
