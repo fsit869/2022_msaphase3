@@ -48,16 +48,14 @@ export const VideoComponent = (props: Props) => {
 
     // Video card
     return <Card sx={{
-        maxWidth: 340,
-        maxHeight: 350,
-        minWidth: 260,
+        maxWidth: 300,
+        maxHeight: 300,
+        minWidth: 300,
         minHeight: 300,
     }}>
         {/*Header*/}
         <CardHeader
-            title={props.videoID}
-            subheader={"wow a subheading"}
-            subheaderTypographyProps={{variant: "subtitle2"}}
+            title={"VidID: " + props.videoID}
             sx={{
                 backgroundColor: "lightyellow",
                 textAlign: "left",
@@ -67,14 +65,32 @@ export const VideoComponent = (props: Props) => {
 
         {/*Video*/}
         <CardContent sx={{
-            paddingTop: 0,
-            minHeight: "160px",
             backgroundColor: "lightyellow",
         }}>
             <iframe
                 src={"https://www.youtube.com/embed/" + props.videoID}
+                width={260}
+                height={120}
+
                 allowFullScreen={true}
             />
+
+            {/*Dislike data*/}
+            {error ? <p>Video could not be found</p> : <div>
+                <Typography variant="body2" align="left" component="p">
+                    <b>Likes:</b> {videoDetails.likes}    <b>Dislikes:</b> {videoDetails.dislikes}
+                </Typography>
+                <Typography variant="body2" align="left" component="p">
+                    <b>Rating:</b> {videoDetails.rating.toString().substring(0, 3)} / 5
+                </Typography>
+            </div>}
+
+            {/* Delete button */}
+            <IconButton aria-label="Delete Task" onClick={() =>
+                props.deleteMethod(props.videoID)
+            }>
+                <DeleteIcon></DeleteIcon>
+            </IconButton>
         </CardContent>
 
         {/* Action area */}
@@ -85,28 +101,10 @@ export const VideoComponent = (props: Props) => {
             }}
         >
 
-            {/*Dislike data*/}
-            {error ? <p>Video could not be found</p> : <div>
-                <Typography variant="body2" align="left" component="p">
-                    Likes: {videoDetails.likes}
-                </Typography>
-                <Typography variant="body2" align="left" component="p">
-                    Dislikes: {videoDetails.dislikes}
-                </Typography>
-                <Typography variant="body2" align="left" component="p">
-                    Rating: {videoDetails.rating.toString().substring(0, 3)} / 5
-                </Typography>
-            </div>}
 
 
-            <Box p={5}></Box>
 
-            {/* Delete button */}
-            <IconButton aria-label="Delete Task" onClick={() =>
-                props.deleteMethod(props.videoID)
-            }>
-                <DeleteIcon></DeleteIcon>
-            </IconButton>
+
         </CardActions>
     </Card>;
 }
