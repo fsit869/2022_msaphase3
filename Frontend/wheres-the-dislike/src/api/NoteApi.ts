@@ -54,6 +54,7 @@ export function saveNewNote(
     description: string,
     date: string,
     severity: number,
+    updateMethod: any
 ) {
     axios.post(ENDPOINT + "/notes", {
         title: title,
@@ -61,6 +62,7 @@ export function saveNewNote(
         description: description,
         severity: severity
     }).then((res)=> {
+        updateMethod()
     }).catch((error) => {
 
     })
@@ -68,10 +70,11 @@ export function saveNewNote(
 
 export function deleteNote(
     noteID: string,
+    updateMethod: any
 ) {
-    axios.delete(ENDPOINT + "/notes" + noteID)
+    axios.delete(ENDPOINT + "/notes/" + noteID)
     .then((res)=> {
-
+        updateMethod()
     }).catch((error) => {
 
     })

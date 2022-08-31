@@ -2,6 +2,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {Card, CardActions, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
 import {useState} from "react";
 import NoteInterface from "../../api/mynoteapi/NoteInterface";
+import {deleteNote} from "../../api/NoteApi";
 
 
 // Set severity colours
@@ -46,6 +47,7 @@ export const TaskComponent: React.FC<NoteInterface> = (props: NoteInterface) => 
 
     // Handle delete requests
     const handleDelete = () => {
+        deleteNote(props.id, props.updateMethod)
     };
 
     return (

@@ -18,6 +18,7 @@ import {saveNewNote} from "../../api/NoteApi";
 
 // No props taken
 interface Props {
+    updateMethod: any
 }
 
 /**
@@ -59,7 +60,7 @@ export const NewNote: React.FC<Props> = (props: Props) => {
             // Reject creating new note if error
         } else {
             // Send mutation for new note
-            saveNewNote(title, comments, new Date().toISOString().slice(0, 10), severity)
+            saveNewNote(title, comments, new Date().toISOString().slice(0, 10), severity, props.updateMethod)
             handleClose();
         }
 

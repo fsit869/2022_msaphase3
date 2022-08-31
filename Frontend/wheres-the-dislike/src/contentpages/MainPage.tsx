@@ -71,18 +71,20 @@ function MainPage() {
                                         description={currentNote.description}
                                         date={currentNote.date}
                                         severity={currentNote.severity}
+                                        updateMethod={updateNotes}
                                     />
                                 </Grid>
                             ))
                     }
                 </Grid>
+
             </Box>
             {/* New task FAB */}
             <Button onClick={() => {
                 updateNotes()
             }}>Yeo</Button>
             <NewVideo onNewNote={addNewComponentToList}></NewVideo>
-            <NewNote></NewNote>
+            <NewNote updateMethod={updateNotes}></NewNote>
 
 
         </div>

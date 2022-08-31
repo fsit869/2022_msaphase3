@@ -17,4 +17,5 @@ export default interface NoteInterface {
     description: string,
     date: string,
     severity: number,
+    updateMethod: any
 }
