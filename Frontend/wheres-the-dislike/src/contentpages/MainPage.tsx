@@ -7,6 +7,8 @@ import {NewVideo} from "../components/NewVideo";
 import BouncingBall from "../components/BouncingBall";
 import {TaskComponent} from "../components/notes/TaskComponent";
 import {NewNote} from "../components/notes/NewNote";
+import NoteInterface from "../api/mynoteapi/NoteInterface";
+import {getAllNotes} from "../api/NoteApi";
 
 /**
  * This contains all the content of the main page.
@@ -14,7 +16,7 @@ import {NewNote} from "../components/notes/NewNote";
  */
 function MainPage() {
     const [videoList, setVideoList] = useState<any | any>({})
-
+    const [noteData, setNoteData] = useState<any | any>([])
     /**
      * Add new video component
      * @param videoID
@@ -35,31 +37,51 @@ function MainPage() {
         setVideoList(oldVideos);
     }
 
+    // Display notes
+    const updateNotes = () => {
+        // Clear note arr
+        getAllNotes(setNoteData)
+    }
+
     return (
         <div>
             <Box p={4}/>
 
-            <Grid container spacing={2} justifyContent="center" >
-                {/*Render video compnents*/}
-                {Object.keys(videoList).map(function(key, index) {
-                    return <Grid item>
-                        {videoList[key]}
+            <Box p={5}>
+                <Grid container spacing={2} justifyContent="center">
+                    {/*Render video compnents*/}
+                    {Object.keys(videoList).map(function (key, index) {
+                        return <Grid item>
+                            {videoList[key]}
+                        </Grid>
+                    })}
+
+                    <Grid item>
+                        <BouncingBall></BouncingBall>
                     </Grid>
-                })}
 
-                <Grid item>
-                    <BouncingBall></BouncingBall>
+                    {/*Grid containing components */}
+                    {
+                        noteData.map((currentNote: NoteInterface) =>
+                            (
+                                <Grid item>
+                                    <TaskComponent
+                                        id={currentNote.id}
+                                        title={currentNote.title}
+                                        description={currentNote.description}
+                                        date={currentNote.date}
+                                        severity={currentNote.severity}
+                                    />
+                                </Grid>
+                            ))
+                    }
                 </Grid>
-
-                <Grid item>
-                    <TaskComponent severity={1} date={"10/20"} description={"Hello"} id={"re"} title={"ttie"}/>
-                </Grid>
-
-                <NewVideo onNewNote={addNewComponentToList}></NewVideo>
-            </Grid>
+            </Box>
             {/* New task FAB */}
-
-
+            <Button onClick={() => {
+                updateNotes()
+            }}>Yeo</Button>
+            <NewVideo onNewNote={addNewComponentToList}></NewVideo>
             <NewNote></NewNote>
 
 

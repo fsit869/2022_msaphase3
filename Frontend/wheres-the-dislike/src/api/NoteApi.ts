@@ -12,20 +12,20 @@ const ENDPOINT = "https://msa-notes-backend.herokuapp.com"
 
 export function getAllNotes(
     setData: React.Dispatch<any>,
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>,
-    setError: React.Dispatch<React.SetStateAction<boolean>>
+    // setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+    // setError: React.Dispatch<React.SetStateAction<boolean>>
 ) {
     axios.get<NoteKeys>(ENDPOINT + "/notes").then((res) => {
         // Successful fetch
         console.log(res)
         setData(res.data);
-        setLoading(false);
-        setError(false);
+        // setLoading(false);
+        // setError(false);
     }).catch((error) => {
         // Failed fetch
         console.log(error);
-        setLoading(false);
-        setError(true);
+        // setLoading(false);
+        // setError(true);
     })
 }
 
@@ -61,7 +61,6 @@ export function saveNewNote(
         description: description,
         severity: severity
     }).then((res)=> {
-
     }).catch((error) => {
 
     })
