@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../components/Header";
 import {VideoComponent} from "../components/VideoComponent";
 import {Box, Button, Grid, Stack} from "@mui/material";
@@ -17,6 +17,12 @@ import {getAllNotes} from "../api/NoteApi";
 function MainPage() {
     const [videoList, setVideoList] = useState<any | any>({})
     const [noteData, setNoteData] = useState<any | any>([])
+
+    useEffect(() => {
+        updateNotes()
+    }, []);
+
+
     /**
      * Add new video component
      * @param videoID
@@ -79,10 +85,8 @@ function MainPage() {
                 </Grid>
 
             </Box>
+
             {/* New task FAB */}
-            <Button onClick={() => {
-                updateNotes()
-            }}>Yeo</Button>
             <NewVideo onNewNote={addNewComponentToList}></NewVideo>
             <NewNote updateMethod={updateNotes}></NewNote>
 
