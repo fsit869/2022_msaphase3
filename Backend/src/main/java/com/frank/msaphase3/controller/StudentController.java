@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,7 +29,24 @@ public class StudentController {
     }
 
     @GetMapping("/student/getall")
-    public ResponseEntity<List<Student>> getAllStudents() {
-        return new ResponseEntity<>(studentService.getAllStudents(), HttpStatus.OK);
+    public ResponseEntity<List<Student>> getAllStudents(
+            @RequestParam(name="page", defaultValue = "0") int page,
+            @RequestParam(name="perPage", defaultValue="25" ) int perPage,
+            @RequestParam(name="sort", defaultValue = "id") String sort,
+            @RequestParam(name="order", defaultValue="DESC") String order
+    ) {
+        try {
+            List<Student> studentList;
+            if (order.equals("ASC")) {
+                studentList = studentService.getAllStudentsPaging(page, perPage, sort, true);
+            } else {
+                studentList = studentService.getAllStudentsPaging(page, perPage, sort, false);
+            }
+            return new ResponseEntity(studentList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity(e.toString(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

@@ -7,8 +7,13 @@ import com.frank.msaphase3.model.University;
 import com.frank.msaphase3.repository.StudentRepository;
 import com.frank.msaphase3.repository.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,5 +37,24 @@ public class StudentService {
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public List<Student> getAllStudentsPaging(int page, int perPage, String sort, boolean ascend) {
+        Pageable paging;
+
+        // Find sort direction
+        if (ascend) {
+            paging = PageRequest.of(page, perPage, Sort.by(sort).ascending());
+        } else {
+            paging = PageRequest.of(page, perPage, Sort.by(sort).descending());
+        }
+
+        Page<Student> pagedResult = studentRepository.findAll(paging);
+
+        if (pagedResult.hasContent()) {
+            return pagedResult.getContent();
+        } else {
+            return new ArrayList<Student>();
+        }
     }
 }
