@@ -1,5 +1,6 @@
 package com.frank.msaphase3.controller;
 
+import com.frank.msaphase3.dto.NoteDto;
 import com.frank.msaphase3.model.Note;
 import com.frank.msaphase3.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,13 @@ public class NoteController {
         }
     }
 
-//	@PatchMapping(path="/note/{note_id}")
-//	public ResponseEntity<Note> patchNote(@PathVariable String note_id, @RequestBody  ) {
-//	}
+	@PutMapping(path="/note/{note_id}")
+	public ResponseEntity<Note> updateNote(@PathVariable int note_id, @RequestBody NoteDto noteDto) {
+        Note note = noteService.updateNote(note_id, noteDto);
+        if (note == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(note, HttpStatus.OK);
+        }
+	}
 }

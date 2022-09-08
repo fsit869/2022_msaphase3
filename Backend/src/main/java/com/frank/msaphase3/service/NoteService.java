@@ -1,5 +1,6 @@
 package com.frank.msaphase3.service;
 
+import com.frank.msaphase3.dto.NoteDto;
 import com.frank.msaphase3.model.Note;
 import com.frank.msaphase3.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,4 +40,20 @@ public class NoteService {
     public void deleteNote(int id) {
         noteRepository.deleteById(id);
     }
+
+    @CacheEvict(value = "noteCache", allEntries = true)
+    public Note updateNote(int id, NoteDto updatedNoteDetails) {
+        return noteRepository.findById(id).map(
+                note -> {
+                    note.setDate(updatedNoteDetails.getDate());
+                    note.setDescription(updatedNoteDetails.getDescription());
+                    note.setTitle(updatedNoteDetails.getTitle());
+                    note.setServerity(updatedNoteDetails.getServerity());
+                    return noteRepository.save(note);
+                }
+        ).orElseGet(() -> {
+            return null;
+        });
+    }
+
 }
