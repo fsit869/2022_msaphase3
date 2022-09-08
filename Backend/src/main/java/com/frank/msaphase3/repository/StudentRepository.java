@@ -11,4 +11,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query("select s from Student s order by s.gpa")
     List<Student> findByOrderByGpaAsc(Pageable pageable);
 
+    @Query("select s from Student s where upper(s.upi) like upper(concat('%', ?1, '%')) order by s.name")
+    List<Student> findByUpiContainsIgnoreCaseOrderByNameAsc(String upi);
+
+
+
 }

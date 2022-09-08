@@ -49,4 +49,10 @@ public class StudentController {
         }
 
     }
+
+    @GetMapping("student/upi/{upi}")
+    public ResponseEntity searchByUpi(String upi) {
+        return new ResponseEntity(studentService.findByUpi(upi), HttpStatus.OK);
+    }
+
 }

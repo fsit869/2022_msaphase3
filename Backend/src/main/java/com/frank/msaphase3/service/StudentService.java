@@ -57,4 +57,8 @@ public class StudentService {
             return new ArrayList<Student>();
         }
     }
+
+    public List<Student> findByUpi(String upi) {
+        return studentRepository.findByUpiContainsIgnoreCaseOrderByNameAsc(upi);
+    }
 }
