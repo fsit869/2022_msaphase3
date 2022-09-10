@@ -24,7 +24,7 @@ Java Spring framework, H2 Database, Maven Project</li>
 <li> Onion structure - clear separation of DB access layer and API layer</li> 
 <li>Usage of EF Core</li> 
 <li>Usage of caching to speed up calls</li> 
-<li>End to end testing using Postman or JMeter</li> 
+<li>End to end testing using Postman or JMeter. JMeter test located in Jmeter folder</li> 
 <li>Comprehensive unit testing</li> 
 <li>OAuth2 with PKCE login w/ at least ONE third party provider</li>
 <li>Demonstration of complex BE logic</li>
